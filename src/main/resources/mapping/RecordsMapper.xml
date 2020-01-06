@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unicorn.srgasoline.dao.RecordsMapper" >
+  <resultMap id="BaseResultMap" type="com.unicorn.srgasoline.entity.Records" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="Price" property="price" jdbcType="REAL" />
+    <result column="Hewei" property="hewei" jdbcType="SMALLINT" />
+    <result column="Linkyouguan" property="linkyouguan" jdbcType="VARCHAR" />
+    <result column="Youpin" property="youpin" jdbcType="VARCHAR" />
+    <result column="Unit" property="unit" jdbcType="BIGINT" />
+    <result column="Yufaliang" property="yufaliang" jdbcType="REAL" />
+    <result column="Total" property="total" jdbcType="REAL" />
+    <result column="Shifaliang" property="shifaliang" jdbcType="REAL" />
+    <result column="Date1" property="date1" jdbcType="VARCHAR" />
+    <result column="Time1" property="time1" jdbcType="VARCHAR" />
+    <result column="Huodanhao" property="huodanhao" jdbcType="VARCHAR" />
+    <result column="Liushuihao" property="liushuihao" jdbcType="VARCHAR" />
+    <result column="ICcardno" property="iccardno" jdbcType="VARCHAR" />
+    <result column="Fapiaohao" property="fapiaohao" jdbcType="VARCHAR" />
+    <result column="GuanzhuangdanweiCode" property="guanzhuangdanweicode" jdbcType="VARCHAR" />
+    <result column="Guanzhuangdanwei" property="guanzhuangdanwei" jdbcType="VARCHAR" />
+    <result column="Xwjcaozuoyuan" property="xwjcaozuoyuan" jdbcType="VARCHAR" />
+    <result column="Caozuoyuan" property="caozuoyuan" jdbcType="VARCHAR" />
+    <result column="Yunshumode" property="yunshumode" jdbcType="VARCHAR" />
+    <result column="Piaoliushuihao" property="piaoliushuihao" jdbcType="VARCHAR" />
+    <result column="Fukuanfangshi" property="fukuanfangshi" jdbcType="VARCHAR" />
+    <result column="Xiaoshouleixing" property="xiaoshouleixing" jdbcType="VARCHAR" />
+    <result column="zuguandanweiName" property="zuguandanweiname" jdbcType="VARCHAR" />
+    <result column="ZuguandanweiAddress" property="zuguandanweiaddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, Price, Hewei, Linkyouguan, Youpin, Unit, Yufaliang, Total, Shifaliang, Date1, 
+    Time1, Huodanhao, Liushuihao, ICcardno, Fapiaohao, GuanzhuangdanweiCode, Guanzhuangdanwei, 
+    Xwjcaozuoyuan, Caozuoyuan, Yunshumode, Piaoliushuihao, Fukuanfangshi, Xiaoshouleixing, 
+    zuguandanweiName, ZuguandanweiAddress
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.unicorn.srgasoline.entity.RecordsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Records
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Records
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Records
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.unicorn.srgasoline.entity.RecordsExample" >
+    delete from Records
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.unicorn.srgasoline.entity.Records" >
+    insert into Records (ID, Price, Hewei, 
+      Linkyouguan, Youpin, Unit, 
+      Yufaliang, Total, Shifaliang, 
+      Date1, Time1, Huodanhao, 
+      Liushuihao, ICcardno, Fapiaohao, 
+      GuanzhuangdanweiCode, Guanzhuangdanwei, 
+      Xwjcaozuoyuan, Caozuoyuan, Yunshumode, 
+      Piaoliushuihao, Fukuanfangshi, Xiaoshouleixing, 
+      zuguandanweiName, ZuguandanweiAddress)
+    values (#{id,jdbcType=BIGINT}, #{price,jdbcType=REAL}, #{hewei,jdbcType=SMALLINT}, 
+      #{linkyouguan,jdbcType=VARCHAR}, #{youpin,jdbcType=VARCHAR}, #{unit,jdbcType=BIGINT}, 
+      #{yufaliang,jdbcType=REAL}, #{total,jdbcType=REAL}, #{shifaliang,jdbcType=REAL}, 
+      #{date1,jdbcType=VARCHAR}, #{time1,jdbcType=VARCHAR}, #{huodanhao,jdbcType=VARCHAR}, 
+      #{liushuihao,jdbcType=VARCHAR}, #{iccardno,jdbcType=VARCHAR}, #{fapiaohao,jdbcType=VARCHAR}, 
+      #{guanzhuangdanweicode,jdbcType=VARCHAR}, #{guanzhuangdanwei,jdbcType=VARCHAR}, 
+      #{xwjcaozuoyuan,jdbcType=VARCHAR}, #{caozuoyuan,jdbcType=VARCHAR}, #{yunshumode,jdbcType=VARCHAR}, 
+      #{piaoliushuihao,jdbcType=VARCHAR}, #{fukuanfangshi,jdbcType=VARCHAR}, #{xiaoshouleixing,jdbcType=VARCHAR}, 
+      #{zuguandanweiname,jdbcType=VARCHAR}, #{zuguandanweiaddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.unicorn.srgasoline.entity.Records" >
+    insert into Records
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="price != null" >
+        Price,
+      </if>
+      <if test="hewei != null" >
+        Hewei,
+      </if>
+      <if test="linkyouguan != null" >
+        Linkyouguan,
+      </if>
+      <if test="youpin != null" >
+        Youpin,
+      </if>
+      <if test="unit != null" >
+        Unit,
+      </if>
+      <if test="yufaliang != null" >
+        Yufaliang,
+      </if>
+      <if test="total != null" >
+        Total,
+      </if>
+      <if test="shifaliang != null" >
+        Shifaliang,
+      </if>
+      <if test="date1 != null" >
+        Date1,
+      </if>
+      <if test="time1 != null" >
+        Time1,
+      </if>
+      <if test="huodanhao != null" >
+        Huodanhao,
+      </if>
+      <if test="liushuihao != null" >
+        Liushuihao,
+      </if>
+      <if test="iccardno != null" >
+        ICcardno,
+      </if>
+      <if test="fapiaohao != null" >
+        Fapiaohao,
+      </if>
+      <if test="guanzhuangdanweicode != null" >
+        GuanzhuangdanweiCode,
+      </if>
+      <if test="guanzhuangdanwei != null" >
+        Guanzhuangdanwei,
+      </if>
+      <if test="xwjcaozuoyuan != null" >
+        Xwjcaozuoyuan,
+      </if>
+      <if test="caozuoyuan != null" >
+        Caozuoyuan,
+      </if>
+      <if test="yunshumode != null" >
+        Yunshumode,
+      </if>
+      <if test="piaoliushuihao != null" >
+        Piaoliushuihao,
+      </if>
+      <if test="fukuanfangshi != null" >
+        Fukuanfangshi,
+      </if>
+      <if test="xiaoshouleixing != null" >
+        Xiaoshouleixing,
+      </if>
+      <if test="zuguandanweiname != null" >
+        zuguandanweiName,
+      </if>
+      <if test="zuguandanweiaddress != null" >
+        ZuguandanweiAddress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="hewei != null" >
+        #{hewei,jdbcType=SMALLINT},
+      </if>
+      <if test="linkyouguan != null" >
+        #{linkyouguan,jdbcType=VARCHAR},
+      </if>
+      <if test="youpin != null" >
+        #{youpin,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=BIGINT},
+      </if>
+      <if test="yufaliang != null" >
+        #{yufaliang,jdbcType=REAL},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=REAL},
+      </if>
+      <if test="shifaliang != null" >
+        #{shifaliang,jdbcType=REAL},
+      </if>
+      <if test="date1 != null" >
+        #{date1,jdbcType=VARCHAR},
+      </if>
+      <if test="time1 != null" >
+        #{time1,jdbcType=VARCHAR},
+      </if>
+      <if test="huodanhao != null" >
+        #{huodanhao,jdbcType=VARCHAR},
+      </if>
+      <if test="liushuihao != null" >
+        #{liushuihao,jdbcType=VARCHAR},
+      </if>
+      <if test="iccardno != null" >
+        #{iccardno,jdbcType=VARCHAR},
+      </if>
+      <if test="fapiaohao != null" >
+        #{fapiaohao,jdbcType=VARCHAR},
+      </if>
+      <if test="guanzhuangdanweicode != null" >
+        #{guanzhuangdanweicode,jdbcType=VARCHAR},
+      </if>
+      <if test="guanzhuangdanwei != null" >
+        #{guanzhuangdanwei,jdbcType=VARCHAR},
+      </if>
+      <if test="xwjcaozuoyuan != null" >
+        #{xwjcaozuoyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="caozuoyuan != null" >
+        #{caozuoyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="yunshumode != null" >
+        #{yunshumode,jdbcType=VARCHAR},
+      </if>
+      <if test="piaoliushuihao != null" >
+        #{piaoliushuihao,jdbcType=VARCHAR},
+      </if>
+      <if test="fukuanfangshi != null" >
+        #{fukuanfangshi,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoshouleixing != null" >
+        #{xiaoshouleixing,jdbcType=VARCHAR},
+      </if>
+      <if test="zuguandanweiname != null" >
+        #{zuguandanweiname,jdbcType=VARCHAR},
+      </if>
+      <if test="zuguandanweiaddress != null" >
+        #{zuguandanweiaddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.unicorn.srgasoline.entity.RecordsExample" resultType="java.lang.Integer" >
+    select count(*) from Records
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Records
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.price != null" >
+        Price = #{record.price,jdbcType=REAL},
+      </if>
+      <if test="record.hewei != null" >
+        Hewei = #{record.hewei,jdbcType=SMALLINT},
+      </if>
+      <if test="record.linkyouguan != null" >
+        Linkyouguan = #{record.linkyouguan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.youpin != null" >
+        Youpin = #{record.youpin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null" >
+        Unit = #{record.unit,jdbcType=BIGINT},
+      </if>
+      <if test="record.yufaliang != null" >
+        Yufaliang = #{record.yufaliang,jdbcType=REAL},
+      </if>
+      <if test="record.total != null" >
+        Total = #{record.total,jdbcType=REAL},
+      </if>
+      <if test="record.shifaliang != null" >
+        Shifaliang = #{record.shifaliang,jdbcType=REAL},
+      </if>
+      <if test="record.date1 != null" >
+        Date1 = #{record.date1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time1 != null" >
+        Time1 = #{record.time1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huodanhao != null" >
+        Huodanhao = #{record.huodanhao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.liushuihao != null" >
+        Liushuihao = #{record.liushuihao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iccardno != null" >
+        ICcardno = #{record.iccardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fapiaohao != null" >
+        Fapiaohao = #{record.fapiaohao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guanzhuangdanweicode != null" >
+        GuanzhuangdanweiCode = #{record.guanzhuangdanweicode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guanzhuangdanwei != null" >
+        Guanzhuangdanwei = #{record.guanzhuangdanwei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xwjcaozuoyuan != null" >
+        Xwjcaozuoyuan = #{record.xwjcaozuoyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caozuoyuan != null" >
+        Caozuoyuan = #{record.caozuoyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yunshumode != null" >
+        Yunshumode = #{record.yunshumode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piaoliushuihao != null" >
+        Piaoliushuihao = #{record.piaoliushuihao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fukuanfangshi != null" >
+        Fukuanfangshi = #{record.fukuanfangshi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xiaoshouleixing != null" >
+        Xiaoshouleixing = #{record.xiaoshouleixing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zuguandanweiname != null" >
+        zuguandanweiName = #{record.zuguandanweiname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zuguandanweiaddress != null" >
+        ZuguandanweiAddress = #{record.zuguandanweiaddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Records
+    set ID = #{record.id,jdbcType=BIGINT},
+      Price = #{record.price,jdbcType=REAL},
+      Hewei = #{record.hewei,jdbcType=SMALLINT},
+      Linkyouguan = #{record.linkyouguan,jdbcType=VARCHAR},
+      Youpin = #{record.youpin,jdbcType=VARCHAR},
+      Unit = #{record.unit,jdbcType=BIGINT},
+      Yufaliang = #{record.yufaliang,jdbcType=REAL},
+      Total = #{record.total,jdbcType=REAL},
+      Shifaliang = #{record.shifaliang,jdbcType=REAL},
+      Date1 = #{record.date1,jdbcType=VARCHAR},
+      Time1 = #{record.time1,jdbcType=VARCHAR},
+      Huodanhao = #{record.huodanhao,jdbcType=VARCHAR},
+      Liushuihao = #{record.liushuihao,jdbcType=VARCHAR},
+      ICcardno = #{record.iccardno,jdbcType=VARCHAR},
+      Fapiaohao = #{record.fapiaohao,jdbcType=VARCHAR},
+      GuanzhuangdanweiCode = #{record.guanzhuangdanweicode,jdbcType=VARCHAR},
+      Guanzhuangdanwei = #{record.guanzhuangdanwei,jdbcType=VARCHAR},
+      Xwjcaozuoyuan = #{record.xwjcaozuoyuan,jdbcType=VARCHAR},
+      Caozuoyuan = #{record.caozuoyuan,jdbcType=VARCHAR},
+      Yunshumode = #{record.yunshumode,jdbcType=VARCHAR},
+      Piaoliushuihao = #{record.piaoliushuihao,jdbcType=VARCHAR},
+      Fukuanfangshi = #{record.fukuanfangshi,jdbcType=VARCHAR},
+      Xiaoshouleixing = #{record.xiaoshouleixing,jdbcType=VARCHAR},
+      zuguandanweiName = #{record.zuguandanweiname,jdbcType=VARCHAR},
+      ZuguandanweiAddress = #{record.zuguandanweiaddress,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.unicorn.srgasoline.entity.Records" >
+    update Records
+    <set >
+      <if test="price != null" >
+        Price = #{price,jdbcType=REAL},
+      </if>
+      <if test="hewei != null" >
+        Hewei = #{hewei,jdbcType=SMALLINT},
+      </if>
+      <if test="linkyouguan != null" >
+        Linkyouguan = #{linkyouguan,jdbcType=VARCHAR},
+      </if>
+      <if test="youpin != null" >
+        Youpin = #{youpin,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        Unit = #{unit,jdbcType=BIGINT},
+      </if>
+      <if test="yufaliang != null" >
+        Yufaliang = #{yufaliang,jdbcType=REAL},
+      </if>
+      <if test="total != null" >
+        Total = #{total,jdbcType=REAL},
+      </if>
+      <if test="shifaliang != null" >
+        Shifaliang = #{shifaliang,jdbcType=REAL},
+      </if>
+      <if test="date1 != null" >
+        Date1 = #{date1,jdbcType=VARCHAR},
+      </if>
+      <if test="time1 != null" >
+        Time1 = #{time1,jdbcType=VARCHAR},
+      </if>
+      <if test="huodanhao != null" >
+        Huodanhao = #{huodanhao,jdbcType=VARCHAR},
+      </if>
+      <if test="liushuihao != null" >
+        Liushuihao = #{liushuihao,jdbcType=VARCHAR},
+      </if>
+      <if test="iccardno != null" >
+        ICcardno = #{iccardno,jdbcType=VARCHAR},
+      </if>
+      <if test="fapiaohao != null" >
+        Fapiaohao = #{fapiaohao,jdbcType=VARCHAR},
+      </if>
+      <if test="guanzhuangdanweicode != null" >
+        GuanzhuangdanweiCode = #{guanzhuangdanweicode,jdbcType=VARCHAR},
+      </if>
+      <if test="guanzhuangdanwei != null" >
+        Guanzhuangdanwei = #{guanzhuangdanwei,jdbcType=VARCHAR},
+      </if>
+      <if test="xwjcaozuoyuan != null" >
+        Xwjcaozuoyuan = #{xwjcaozuoyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="caozuoyuan != null" >
+        Caozuoyuan = #{caozuoyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="yunshumode != null" >
+        Yunshumode = #{yunshumode,jdbcType=VARCHAR},
+      </if>
+      <if test="piaoliushuihao != null" >
+        Piaoliushuihao = #{piaoliushuihao,jdbcType=VARCHAR},
+      </if>
+      <if test="fukuanfangshi != null" >
+        Fukuanfangshi = #{fukuanfangshi,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoshouleixing != null" >
+        Xiaoshouleixing = #{xiaoshouleixing,jdbcType=VARCHAR},
+      </if>
+      <if test="zuguandanweiname != null" >
+        zuguandanweiName = #{zuguandanweiname,jdbcType=VARCHAR},
+      </if>
+      <if test="zuguandanweiaddress != null" >
+        ZuguandanweiAddress = #{zuguandanweiaddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.unicorn.srgasoline.entity.Records" >
+    update Records
+    set Price = #{price,jdbcType=REAL},
+      Hewei = #{hewei,jdbcType=SMALLINT},
+      Linkyouguan = #{linkyouguan,jdbcType=VARCHAR},
+      Youpin = #{youpin,jdbcType=VARCHAR},
+      Unit = #{unit,jdbcType=BIGINT},
+      Yufaliang = #{yufaliang,jdbcType=REAL},
+      Total = #{total,jdbcType=REAL},
+      Shifaliang = #{shifaliang,jdbcType=REAL},
+      Date1 = #{date1,jdbcType=VARCHAR},
+      Time1 = #{time1,jdbcType=VARCHAR},
+      Huodanhao = #{huodanhao,jdbcType=VARCHAR},
+      Liushuihao = #{liushuihao,jdbcType=VARCHAR},
+      ICcardno = #{iccardno,jdbcType=VARCHAR},
+      Fapiaohao = #{fapiaohao,jdbcType=VARCHAR},
+      GuanzhuangdanweiCode = #{guanzhuangdanweicode,jdbcType=VARCHAR},
+      Guanzhuangdanwei = #{guanzhuangdanwei,jdbcType=VARCHAR},
+      Xwjcaozuoyuan = #{xwjcaozuoyuan,jdbcType=VARCHAR},
+      Caozuoyuan = #{caozuoyuan,jdbcType=VARCHAR},
+      Yunshumode = #{yunshumode,jdbcType=VARCHAR},
+      Piaoliushuihao = #{piaoliushuihao,jdbcType=VARCHAR},
+      Fukuanfangshi = #{fukuanfangshi,jdbcType=VARCHAR},
+      Xiaoshouleixing = #{xiaoshouleixing,jdbcType=VARCHAR},
+      zuguandanweiName = #{zuguandanweiname,jdbcType=VARCHAR},
+      ZuguandanweiAddress = #{zuguandanweiaddress,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

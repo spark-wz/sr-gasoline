@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unicorn.srgasoline.dao.FlowmeterMapper" >
+  <resultMap id="BaseResultMap" type="com.unicorn.srgasoline.entity.Flowmeter" >
+    <result column="SBBM" property="sbbm" jdbcType="VARCHAR" />
+    <result column="SBLB" property="sblb" jdbcType="VARCHAR" />
+    <result column="CLDW" property="cldw" jdbcType="VARCHAR" />
+    <result column="YLBBH" property="ylbbh" jdbcType="VARCHAR" />
+    <result column="SZWZ" property="szwz" jdbcType="VARCHAR" />
+    <result column="GXBZ" property="gxbz" jdbcType="VARCHAR" />
+    <result column="NAMES" property="names" jdbcType="VARCHAR" />
+    <result column="OILS" property="oils" jdbcType="VARCHAR" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SBBM, SBLB, CLDW, YLBBH, SZWZ, GXBZ, NAMES, OILS, UNITS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.unicorn.srgasoline.entity.FlowmeterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TAB_WLXX_SBPZ_006
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.unicorn.srgasoline.entity.FlowmeterExample" >
+    delete from TAB_WLXX_SBPZ_006
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.unicorn.srgasoline.entity.Flowmeter" >
+    insert into TAB_WLXX_SBPZ_006 (SBBM, SBLB, CLDW, 
+      YLBBH, SZWZ, GXBZ, 
+      NAMES, OILS, UNITS)
+    values (#{sbbm,jdbcType=VARCHAR}, #{sblb,jdbcType=VARCHAR}, #{cldw,jdbcType=VARCHAR}, 
+      #{ylbbh,jdbcType=VARCHAR}, #{szwz,jdbcType=VARCHAR}, #{gxbz,jdbcType=VARCHAR}, 
+      #{names,jdbcType=VARCHAR}, #{oils,jdbcType=VARCHAR}, #{units,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.unicorn.srgasoline.entity.Flowmeter" >
+    insert into TAB_WLXX_SBPZ_006
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sbbm != null" >
+        SBBM,
+      </if>
+      <if test="sblb != null" >
+        SBLB,
+      </if>
+      <if test="cldw != null" >
+        CLDW,
+      </if>
+      <if test="ylbbh != null" >
+        YLBBH,
+      </if>
+      <if test="szwz != null" >
+        SZWZ,
+      </if>
+      <if test="gxbz != null" >
+        GXBZ,
+      </if>
+      <if test="names != null" >
+        NAMES,
+      </if>
+      <if test="oils != null" >
+        OILS,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sbbm != null" >
+        #{sbbm,jdbcType=VARCHAR},
+      </if>
+      <if test="sblb != null" >
+        #{sblb,jdbcType=VARCHAR},
+      </if>
+      <if test="cldw != null" >
+        #{cldw,jdbcType=VARCHAR},
+      </if>
+      <if test="ylbbh != null" >
+        #{ylbbh,jdbcType=VARCHAR},
+      </if>
+      <if test="szwz != null" >
+        #{szwz,jdbcType=VARCHAR},
+      </if>
+      <if test="gxbz != null" >
+        #{gxbz,jdbcType=VARCHAR},
+      </if>
+      <if test="names != null" >
+        #{names,jdbcType=VARCHAR},
+      </if>
+      <if test="oils != null" >
+        #{oils,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.unicorn.srgasoline.entity.FlowmeterExample" resultType="java.lang.Integer" >
+    select count(*) from TAB_WLXX_SBPZ_006
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update TAB_WLXX_SBPZ_006
+    <set >
+      <if test="record.sbbm != null" >
+        SBBM = #{record.sbbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sblb != null" >
+        SBLB = #{record.sblb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cldw != null" >
+        CLDW = #{record.cldw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ylbbh != null" >
+        YLBBH = #{record.ylbbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.szwz != null" >
+        SZWZ = #{record.szwz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxbz != null" >
+        GXBZ = #{record.gxbz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.names != null" >
+        NAMES = #{record.names,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oils != null" >
+        OILS = #{record.oils,jdbcType=VARCHAR},
+      </if>
+      <if test="record.units != null" >
+        UNITS = #{record.units,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update TAB_WLXX_SBPZ_006
+    set SBBM = #{record.sbbm,jdbcType=VARCHAR},
+      SBLB = #{record.sblb,jdbcType=VARCHAR},
+      CLDW = #{record.cldw,jdbcType=VARCHAR},
+      YLBBH = #{record.ylbbh,jdbcType=VARCHAR},
+      SZWZ = #{record.szwz,jdbcType=VARCHAR},
+      GXBZ = #{record.gxbz,jdbcType=VARCHAR},
+      NAMES = #{record.names,jdbcType=VARCHAR},
+      OILS = #{record.oils,jdbcType=VARCHAR},
+      UNITS = #{record.units,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
